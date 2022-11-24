@@ -1,10 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import { RouterProvider } from 'react-router-dom';
+import router from './Routes/Routes/Routes';
 
 function App() {
   return (
-    <div>
-      <h2>hello bangladesh</h2>
+    <div className='max-w-screen-xl m-auto'>
+      <RouterProvider router={router}></RouterProvider>
     </div>
   );
 }
