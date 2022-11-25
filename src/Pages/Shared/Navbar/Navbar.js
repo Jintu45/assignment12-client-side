@@ -12,22 +12,22 @@ const Navbar = () => {
                 <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                 <li><Link to='/'>Home</Link></li>
                     <li><Link to="">Item 3</Link></li>
-                    <li><Link to="">Item 3</Link></li>
+                    <li><Link to="/mydetails">My Details</Link></li>
                     <li><Link to='/blog'>Blogs</Link></li> 
                 </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                <Link to='/' className="btn btn-ghost normal-case text-xl">Phone resale</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="">Item 3</Link></li>
-                    <li><Link to="">Item 3</Link></li>
+                    <li><Link to="/mydetails">My Details</Link></li>
                     <li><Link to='/blog'>Blogs</Link></li>                   
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Get started</a>
+                <Link to="/login" className="btn">Log In</Link>
             </div>
         </div>
     );
