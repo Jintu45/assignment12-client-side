@@ -1,6 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Dashboard = () => {
+    const {user} = useState()
+
+    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+    // use react query for get user product order info 
+    const {data:orders ,isLoading} =  ({
+        queryKey:['bookings',user?.email],
+        queryFn: async()=> {
+            const res = await fetch(url);
+            const data = await res.json();
+            return data ;
+
+        }
+    })
+    
     return (
         <div className="overflow-x-auto">
         <table className="table w-full">

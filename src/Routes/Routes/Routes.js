@@ -1,3 +1,4 @@
+import { cloneElement } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import AddProduct from "../../Dashboard/AddProduct/AddProduct";
 import AllSeller from "../../Dashboard/AllSeller/AllSeller";
@@ -59,11 +60,11 @@ const router = createBrowserRouter([
                 element: <Dashboard></Dashboard>
             },
             {
-                path:'/addProduct',
+                path: '/dashboard/addProduct',
                 element: <AddProduct></AddProduct>
             },
             {
-                path: '/allSeller',
+                path: '/dashboard/allseller',
                 element: <AllSeller></AllSeller>
             }
 
