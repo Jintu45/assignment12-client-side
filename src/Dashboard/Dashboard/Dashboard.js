@@ -1,53 +1,54 @@
-import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import MyOrder from '../MyOrder/MyOrder';
 
 const Dashboard = () => {
-    const {user} = useState()
+    const {user} = useContext(AuthContext)
 
-    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+    const url = `http://localhost:5000/bookings`;
     // use react query for get user product order info 
-    const {data:orders ,isLoading} =  ({
+    const {data:orders = []} = useQuery ({
         queryKey:['bookings',user?.email],
         queryFn: async()=> {
             const res = await fetch(url);
             const data = await res.json();
             return data ;
-
         }
     })
-    
+    console.log(orders)
     return (
         <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
             <tr>
               <th></th>
+              <th>Avatar</th>
               <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Price</th>
+              <th>Payment</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
-
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-            </tr>
-        
-            <tr>
-              <th>2</th>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-            </tr>
-          
-            <tr>
-              <th>3</th>
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>Red</td>
-            </tr>
+                {
+                        orders?.map((order, i) => <tr
+                            key={user._id}
+                        >
+                            <th>{i+1}</th>
+                            <td>
+                                <div className="avatar">
+                                    <div className="w-24 rounded-full">
+                                        <img src={order.photo} alt='' />
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{order?.Name}</td>
+                            <td>{order?.Price}</td>
+                            <td><button className="btn btn-sm text-sm bg-primary">Pay</button></td>
+                            <td><button className="btn btn-sm text-sm bg-red-500">Delete</button></td>
+                        </tr>)
+                    }
           </tbody>
         </table>
       </div>
