@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Login = () => {
-    const {signIn} = useContext(AuthContext)
+    const {signIn, googleLogin} = useContext(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/'
     const handleLogin = event => {
         event.preventDefault()
         const form = event.target;
@@ -13,9 +16,21 @@ const Login = () => {
         signIn(email, password)
         .then(result => {
             const user = result.user;
+            form.reset()
+            navigate(from, {replace: true})
             console.log(user)
         })
-        .catch(error => console.log(error))
+        .catch(error => alert(error))
+    }
+    const handleGoogleLogin = () => {
+        googleLogin()
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+        })
+        .catch(error => {
+            alert(error)
+        })
     }
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -43,7 +58,7 @@ const Login = () => {
 
                 <div className='text-center mb-5'>
                     <Link>
-                        <button className='border-transparent rounded-xl py-2 px-8 bg-stone-500 text-white'>continue with google</button>
+                        <button onClick={handleGoogleLogin} className='border-transparent rounded-xl py-2 px-8 bg-stone-500 text-white'>continue with google</button>
                     </Link>
 
                     <p className='mt-4 '>Create new account please <Link className='text-blue-500 border-b-blue-500 font-bold' to='/register'>Register</Link></p>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Register = () => {
-    const {createUser} = useContext(AuthContext)
+    const {createUser, googleLogin} = useContext(AuthContext)
     const handleRegister = event => {
         event.preventDefault()
         const form = event.target;
@@ -17,6 +17,16 @@ const Register = () => {
             console.log(user)
         })
         .catch(error => alert(error))
+    }
+    const handleGoogleLogin = () => {
+        googleLogin()
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+        })
+        .catch(error => {
+            alert(error)
+        })
     }
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -51,7 +61,7 @@ const Register = () => {
 
                 <div className='text-center mb-5'>
                     <Link>
-                        <button className='border-transparent rounded-xl py-2 px-8 bg-stone-500 text-white'>continue with google</button>
+                        <button onClick={handleGoogleLogin} className='border-transparent rounded-xl py-2 px-8 bg-stone-500 text-white'>continue with google</button>
                     </Link>
                 </div>
             </div>

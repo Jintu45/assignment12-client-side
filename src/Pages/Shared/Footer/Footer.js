@@ -7,9 +7,9 @@ const Footer = () => {
             <div>
                 <img className='rounded-2xl' src={logo} alt="" />
                 <p className="font-bold">
-                ACME Industries Ltd. <br/>Providing reliable tech since 1992
+                ACME Industries Ltd. <br/>Providing reliable tech since 2022
                 </p> 
-                <p>Copyright © 2022 - All right reserved</p>
+                <p>Copyright © 2022 - All right reserved <span className='text-lg font-bold text-orange-500'>Jintu paul</span></p>
             </div> 
             <div>
                 <div className="grid grid-flow-col gap-4">

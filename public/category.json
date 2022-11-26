@@ -1,0 +1,33 @@
+[
+    {
+        "id": "637f3b8d48dbdc0bab510cf7",
+        "category_id": "1",
+        "index": 0,
+        "originalPrice": "55,000",
+        "monitorSize": "Dell 21'' Led ",
+        "photoURL": "https://giftall.s3.amazonaws.com/uploads/images/product/product_60c583de878b2_1310525146.jpg",
+        "title": "Vivo Phone  ",
+        "brand": "Brand:- Vivo"
+      },
+      {
+        "id": "637f3b8d3ed9565ee3c1549f",
+        "category_id": "2",
+        "index": 3,
+        "originalPrice": "220,000",
+        "monitorSize": "Oppo Phone",
+        "photoURL": "https://www.mobiledokan.com/wp-content/uploads/2022/08/Oppo-A57.jpg ",
+        "title": "Oppo Phone",
+        "brand": "brand:- oppo"
+      },
+      {
+        "id": "637f3b8d81fb0489831de03a",
+        "category_id": "3",
+        "index": 5,
+        "processor": " Intel Core i5-9400F (6-core 2.9 GHz, up to 4.1 GHz)",
+        "color":"Black",
+        "monitorSize": "Product Size:375*245*20mm  ",
+        "photoURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVwOlI4XpecMTE5cqIIvhvNexjEGriYny2AQ&usqp=CAU",
+        "title": "Samsung",
+        "brand": "brand:- samsung "
+      }
+]
