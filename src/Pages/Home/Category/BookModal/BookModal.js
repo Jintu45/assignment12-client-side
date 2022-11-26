@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-// import Toast  from 'react-hot-toast'
+import Toast  from 'react-hot-toast'
 import { AuthContext } from '../../../../AuthProvider/AuthProvider';
 const BookingModal = ({product}) => {
 
@@ -13,7 +13,7 @@ const BookingModal = ({product}) => {
         const email = form.email.value;
         const phone = form.phone.value;
         const location = form.location.value
-        // Toast('Your Item Selected')
+        Toast('Your Item Selected')
         const buyerBooking ={
           photo:photoURL,
            Name: title,
@@ -44,10 +44,10 @@ const BookingModal = ({product}) => {
                     <p>Price: {reselPrice}</p>
                 <form className='grid grid-cols-1 gap-3 mt-10'  onSubmit={handleBooking}>
 
-                <input name='name' type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input w-full input-bordered" />
+                <input name='name' type="text" defaultValue={user?.displayName}  placeholder="Your Name" className="input w-full input-bordered" required/>
                 <input name='email' type="text" defaultValue={user?.email} disabled placeholder="Email Address" className="input w-full input-bordered" />
                 <input name='phone' type="text" placeholder="Phone Number" className="input w-full input-bordered" />
-                <input name='location' type="text" placeholder="Location" className="input w-full input-bordered" />
+                <input name='location' type="text" placeholder="Location" className="input w-full input-bordered mb-3" />
                 <br />
                 <input type="submit" className='btn btn-primary' value="Submit" />
                
