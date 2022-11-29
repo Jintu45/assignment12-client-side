@@ -5,15 +5,18 @@ import MyOrder from '../MyOrder/MyOrder';
 
 const Dashboard = () => {
     const {user} = useContext(AuthContext)
+    const url = `http://localhost:5000/bookings?.email=${user?.email}`;
 
-    const url = `http://localhost:5000/bookings`;
-    // use react query for get user product order info 
-    const {data:orders = []} = useQuery ({
-        queryKey:['bookings',user?.email],
-        queryFn: async()=> {
-            const res = await fetch(url);
+    const { data: orders = [] } = useQuery({
+        queryKey: ['bookings', user?.email],
+        queryFn: async () => {
+            const res = await fetch(url, {
+                headers: {
+                   authorization: `bearer ${localStorage.getItem('accessToken')}` 
+                }
+            });
             const data = await res.json();
-            return data ;
+            return data;
         }
     })
     console.log(orders)

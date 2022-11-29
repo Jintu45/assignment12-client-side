@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import AddProduct from "../../Dashboard/AddProduct/AddProduct";
 import AllSeller from "../../Dashboard/AllSeller/AllSeller";
 import Dashboard from "../../Dashboard/Dashboard/Dashboard";
+import Error from "../../Error/Error";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 import Blog from "../../Pages/Blog/Blog";
@@ -15,6 +16,11 @@ import MyDetails from "../../Pages/Mydetails/MyDetails";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
+    {
+        path:'*',
+        element: <Error></Error>,
+        errorElement:<Error></Error>
+      },
     {
         path: '/',
         element: <Main></Main>,

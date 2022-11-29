@@ -1,0 +1,16 @@
+.error{
+    text-align:center;
+    margin-top: 20px;
+}
+.error h1{
+    height: 100px;
+    width: 100px;
+    background-color: gray;
+    border-radius: 50%;
+    line-height: 100px;
+    margin: auto;
+}
+.error h2{
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
