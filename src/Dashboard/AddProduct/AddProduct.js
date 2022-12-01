@@ -38,7 +38,7 @@ const AddProduct = () => {
 
 
        }
-       console.log(product)
+      
     fetch("https://assignment12-server-two.vercel.app/addProduct", {
       method: "POST",
       headers: {

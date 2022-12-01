@@ -20,7 +20,7 @@ const Dashboard = () => {
             return data;
         }
     })
-    console.log(orders)
+    
     const handleDelete = id  => {
         fetch(`https://assignment12-server-two.vercel.app/users/${id}`, {
             method: 'PUT',

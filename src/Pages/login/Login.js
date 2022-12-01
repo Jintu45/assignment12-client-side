@@ -18,7 +18,7 @@ const Login = () => {
             const user = result.user;
             form.reset()
             navigate(from, {replace: true})
-            console.log(user)
+          
         })
         .catch(error => alert(error))
     }
@@ -26,7 +26,7 @@ const Login = () => {
         googleLogin()
         .then(result => {
             const user = result.user;
-            console.log(user)
+           
         })
         .catch(error => {
             alert(error)

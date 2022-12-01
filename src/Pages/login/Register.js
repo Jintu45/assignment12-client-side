@@ -26,14 +26,14 @@ const Register = () => {
             saveUser(name, email, role, verify)
             form.reset()
             navigate(from, {replace: true})
-            console.log(user)
+           
         })
 
         .catch(error => alert(error))
 
 
         const saveUser = (name,email,role, verify) =>  {
-            console.log(name,email,role,'saveuser')
+          
             const user = {name,email,role, verify};
             fetch(`https://assignment12-server-two.vercel.app/users`,{
                 method: 'POST',
@@ -45,7 +45,7 @@ const Register = () => {
             .then(res => res.json())
             .then(userData => {
             if(userData.acknowledged){
-                console.log(userData)
+                
                 toast.success('user create successful')
             }
             })

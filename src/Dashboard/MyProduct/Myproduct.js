@@ -15,7 +15,7 @@ const Myproduct = () => {
         }
     })
 
-    console.log(products)
+   
     const handleDelete = id => {
         fetch(`https://assignment12-server-two.vercel.app/products/${id}`, {
             method: 'PUT'
@@ -34,7 +34,7 @@ const Myproduct = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+         
             if(data.modifiedCount > 0){
                 toast.success('advertise successfully')
                
