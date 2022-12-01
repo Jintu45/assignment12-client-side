@@ -2,12 +2,14 @@ import { cloneElement } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import AddProduct from "../../Dashboard/AddProduct/AddProduct";
 import AllSeller from "../../Dashboard/AllSeller/AllSeller";
+import AllUsers from "../../Dashboard/AllUsers/AllUsers";
 import Dashboard from "../../Dashboard/Dashboard/Dashboard";
 import Myproduct from "../../Dashboard/MyProduct/Myproduct";
 import Error from "../../Error/Error";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 import Blog from "../../Pages/Blog/Blog";
+import AdvertiseProduct from "../../Pages/Home/AdvertiseProduct/AdvertiseProduct";
 import Category from "../../Pages/Home/Category/Category";
 import Products from "../../Pages/Home/Category/Products/Products";
 import Home from "../../Pages/Home/Home/Home";
@@ -38,7 +40,7 @@ const router = createBrowserRouter([
             {
                     path:'/categories/:id',
                     element:<PrivateRoute><Products></Products></PrivateRoute>,
-                   loader:({params})=> fetch(`http://localhost:5000/categories/${params.id}`)
+                   loader:({params})=> fetch(`https://assignment12-server-two.vercel.app/categories/${params.id}`)
             },
             {
                 path:'/blog',
@@ -77,6 +79,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/myproduct',
                 element: <Myproduct></Myproduct>
+            },
+            {
+                path:'/dashboard/allUsers',
+                element: <AllUsers></AllUsers>
             }
 
         ]

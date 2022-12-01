@@ -7,6 +7,7 @@ const AddProduct = () => {
   const {user} = useContext(AuthContext)
   const email = user?.email;
   const verify = 'null'
+  const status = 'available'
   const addNewProduct = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -32,11 +33,13 @@ const AddProduct = () => {
         category_id  ,
         description,
         email,
-        verify
+        verify,
+        status
+
 
        }
        console.log(product)
-    fetch("http://localhost:5000/addProduct", {
+    fetch("https://assignment12-server-two.vercel.app/addProduct", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -86,7 +89,7 @@ const AddProduct = () => {
             <label className="input-group mb-3 input-group-vertical">
               <span>Number</span>
               <input
-                type="text"
+                type="number"
                 name="number"
                 placeholder="Seller Phone Number"
                 className="input input-bordered"

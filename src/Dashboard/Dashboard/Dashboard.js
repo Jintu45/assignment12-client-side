@@ -6,7 +6,7 @@ import MyOrder from '../MyOrder/MyOrder';
 
 const Dashboard = () => {
     const {user} = useContext(AuthContext)
-    const url = `http://localhost:5000/bookings?.email=${user?.email}`;
+    const url = `https://assignment12-server-two.vercel.app/bookings?.email=${user?.email}`;
 
     const { data: orders = [], refetch } = useQuery({
         queryKey: ['bookings', user?.email],
@@ -22,7 +22,7 @@ const Dashboard = () => {
     })
     console.log(orders)
     const handleDelete = id  => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://assignment12-server-two.vercel.app/users/${id}`, {
             method: 'PUT',
             
         })

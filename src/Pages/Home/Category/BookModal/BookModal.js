@@ -19,7 +19,7 @@ const BookingModal = ({product, setProduct}) => {
            Name: title,
            Price: reselPrice,
         }
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://assignment12-server-two.vercel.app/bookings', {
           method:'POST',
           headers:{
             'content-type': 'application/json'
