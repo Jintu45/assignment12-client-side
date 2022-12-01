@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import MyOrder from '../MyOrder/MyOrder';
 
@@ -7,7 +8,7 @@ const Dashboard = () => {
     const {user} = useContext(AuthContext)
     const url = `http://localhost:5000/bookings?.email=${user?.email}`;
 
-    const { data: orders = [] } = useQuery({
+    const { data: orders = [], refetch } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
@@ -20,6 +21,19 @@ const Dashboard = () => {
         }
     })
     console.log(orders)
+    const handleDelete = id  => {
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: 'PUT',
+            
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.deletedCount > 0){
+                toast.success('deleted successfully')
+                refetch()
+            }
+        })
+    }
     return (
         <div className="overflow-x-auto">
         <table className="table w-full">
@@ -36,7 +50,7 @@ const Dashboard = () => {
           <tbody>
                 {
                         orders?.map((order, i) => <tr
-                            key={user._id}
+                            key={order._id}
                         >
                             <th>{i+1}</th>
                             <td>
@@ -49,7 +63,7 @@ const Dashboard = () => {
                             <td>{order?.Name}</td>
                             <td>{order?.Price}</td>
                             <td><button className="btn btn-sm text-sm bg-primary">Pay</button></td>
-                            <td><button className="btn btn-sm text-sm bg-red-500">Delete</button></td>
+                            <td><button onClick={() => handleDelete(order._id)} className="btn btn-sm text-sm bg-red-500">Delete</button></td>
                         </tr>)
                     }
           </tbody>

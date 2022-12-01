@@ -1,41 +1,54 @@
-import React from "react";
-import Toast from "react-hot-toast";
+import React, { useContext } from "react";
+import Toast, { toast } from "react-hot-toast";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+
 
 const AddProduct = () => {
+  const {user} = useContext(AuthContext)
+  const email = user?.email;
+  const verify = 'null'
   const addNewProduct = (event) => {
     event.preventDefault();
     const form = event.target;
-    const product = {
-      name: form.name.value,
-      price: form.price.value,
-      number: form.number.value,
-      location: form.location.value,
-      useTime: form.useTime.value,
-      condition: form.condition.value,
-      category: form.category.value,
-      description: form.description.value,
-    };
+     const image = form.img.value;
+     const name = form.name.value;
+     const price = form.price.value;
+     const number = form.number.value;
+     const location = form.location.value;
+     const useTime = form.useTime.value;
+     const condition = form.condition.value;
+     const category_id = form.category.value;
+     const description = form.description.value
+
+  const product = {
+
+        image,
+        name,
+        price,
+        number,
+        location,
+        useTime,
+        condition,
+        category_id  ,
+        description,
+        email,
+        verify
+
+       }
+       console.log(product)
     fetch("http://localhost:5000/addProduct", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(product),
-    }).then((data) => {
-      if (data.ok) {
-        Toast.success("Product Added To The Server");
-        form.name.value = "";
-        form.price.value = "";
-        form.number.value = "";
-        form.location.value = "";
-        form.useTime.value = "";
-        form.condition.value = "";
-        form.category.value = "";
-        form.description.value = "";
-      } else {
-        Toast.error("Something is Wrong");
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.acknowledged){
+        toast.success('product added successful')
       }
-    });
+    })
   };
 
   return (
@@ -43,6 +56,15 @@ const AddProduct = () => {
       <div className="card w-100 bg-base-100 shadow-xl">
         <form onSubmit={addNewProduct} className="card-body">
           <div className="form-control grid grid-cols-2 gap-4">
+          <label className="input-group mb-3 input-group-vertical">
+              <span>Product Image</span>
+              <input
+                type="url"
+                name="img"
+                placeholder="Product Image"
+                className="input input-bordered"
+              />
+            </label>
             <label className="input-group mb-3 input-group-vertical">
               <span>Product Name</span>
               <input
@@ -116,9 +138,9 @@ const AddProduct = () => {
                 <option disabled selected>
                   Select Category
                 </option>
-                <option>Oppo</option>
-                <option>Samsung</option>
-                <option>Fair</option>
+                <option value='1'>Vivo</option>
+                <option value='2'>Oppo</option>
+                <option value='3'>Samsung</option>
               </select>
             </label>
           </div>

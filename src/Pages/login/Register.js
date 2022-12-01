@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
@@ -7,21 +8,48 @@ const Register = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
+   
+
     const handleRegister = event => {
         event.preventDefault()
+        const verify = "null";
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-
+        const role = form.role.value;
+      
         createUser(email, password)
+
         .then(result => {
             const user = result.user;
+            saveUser(name, email, role, verify)
             form.reset()
             navigate(from, {replace: true})
             console.log(user)
         })
+
         .catch(error => alert(error))
+
+
+        const saveUser = (name,email,role, verify) =>  {
+            console.log(name,email,role,'saveuser')
+            const user = {name,email,role, verify};
+            fetch(`http://localhost:5000/users`,{
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body:JSON.stringify(user)
+            })
+            .then(res => res.json())
+            .then(userData => {
+            if(userData.acknowledged){
+                console.log(userData)
+                toast.success('user create successful')
+            }
+            })
+        }
     }
     const handleGoogleLogin = () => {
         googleLogin()
@@ -59,6 +87,12 @@ const Register = () => {
                     </label>
                     <input type="password" name='password' placeholder="password" className="input input-bordered" required/>
                     </div>
+                    <label > Select account type buyer or seller </label>
+                    <select   className="mt-3 select select-primary w-full max-w-xs" name='role' >
+                        <option value="buyer">Buyer</option>
+                        <option value="seller">Seller</option>
+        
+                    </select>
                     <div className="form-control mt-6">
                         <input type="submit" className="btn btn-primary" value="Register" />
                     </div>
